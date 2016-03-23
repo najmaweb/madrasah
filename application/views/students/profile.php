@@ -132,10 +132,32 @@
     <script src="<?php echo base_url()?>assets/padi/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
     <script type="text/javascript">
 		(function($){
-			console.log("test");
+			var months = ["January","February","March","April","May","June","July","August","September","October","Nopember","December"];
+			addTrailingZero = function(pnumber){
+				var out;
+				for(var i=pnumber.toString().length;i<=2;i++){
+					out = '0'+pnumber.toString();
+				}
+				return out;
+			}
+			$.fn.dateVal = function($option){
+				$settings = $.extend({
+					srcFormat:"dd MM yyyy",
+					outFormat:"yyyy-mm-dd"
+				});
+				var that = $(this),
+					arr = $(this).val().split(" "),
+					out = arr[2]+"-"+addTrailingZero(months.indexOf(arr[1]))+"-"+arr[0];
+					that.attr("dValue",out);
+			}
 			$("#bday").datepicker({
 				format:"dd MM yyyy",
 				autoclose:true
+			})
+			.on("changeDate",function(){
+				console.log("date changed");
+				$(this).dateVal();
+				console.log("dValue",$(this).attr("dValue"));
 			});
 			$("#saveStudent").click(function(){
 				console.log("test2");

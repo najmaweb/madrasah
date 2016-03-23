@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Teest Bootstrap date</title>
+    <meta content="">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="bootstrap-datepicker.js"></script>
+	<link rel="stylesheet" href="datepicker3.css" />
+    <style></style>
+  </head>
+  <body>
+	  Tanggal <input type="text" id="dtpckr" />
+	  <script type="text/javascript">
+		(function($){
+			$("#dtpckr").datepicker({
+				format:"dd/mm/yyyy",
+				autoclose:true
+			});
+		}(jQuery))
+	  </script>
+  </body>
+</html>

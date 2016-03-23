@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<?php $this->load->view("commons/head");?>
+	<link rel="stylesheet" href="<?php echo baseurl();?>assets/padi/plugins/datepicker/datepicker3.css" />
 	<script type="text/javascript" src="<?php echo baseurl();?>assets/padilibs/padi.imagelib.js"></script>	
 	<script type="text/javascript">
 		uploadImage = function(evt){
@@ -128,10 +129,14 @@
     <script src='<?php echo base_url()?>assets/padi/plugins/fastclick/fastclick.min.js'></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url()?>assets/padi/dist/js/app.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url()?>assets/padi/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
     <script type="text/javascript">
 		(function($){
 			console.log("test");
-			$("#bday").datepicker();
+			$("#bday").datepicker({
+				format:"dd MM yyyy",
+				autoclose:true
+			});
 			$("#saveStudent").click(function(){
 				console.log("test2");
 				$.ajax({

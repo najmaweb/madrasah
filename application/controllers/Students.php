@@ -1,24 +1,30 @@
 <?php
 class Students extends CI_Controller{
 	function __construct(){
-	parent::__construct();
-	$this->load->helper("students");
+		parent::__construct();
+		$this->load->helper("students");
 	}
 	public function add(){
-	$this->load->view("students/add");
+		if(islogin()){
+			$this->load->view("students/add");
+		}
 	}
 	public function index(){
-	if(islogin()){
-	$data["objs"] = getstudents();
-	$this->load->view("students/students",$data);
-	}
+		if(islogin()){
+			$data["objs"] = getstudents();
+			$this->load->view("students/students",$data);
+		}
 	}
 	public function profile(){
-		$data["obj"] = getstudent($this->uri->segment(3));
-		$this->load->view("students/profile",$data);
+		if(islogin()){
+			$data["obj"] = getstudent($this->uri->segment(3));
+			$this->load->view("students/profile",$data);
+		}
 	}
 	public function registration(){
-	$this->load->view("students/registration");
+		if(islogin()){
+			$this->load->view("students/registration");
+		}
 	}
 	public function save(){
 		$params = $this->input->post();

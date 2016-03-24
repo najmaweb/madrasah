@@ -104,7 +104,7 @@
                       <textarea class="form-control" rows="3" placeholder="Enter ..." id="description"></textarea>
                     </div>
                   <div class="box-footer">
-                    <button  id="saveStudent" class="btn btn-primary">Simpan</button>
+                    <div  id="saveStudent" class="btn btn-primary">Simpan</div>
                   </div>
                   </form>
                 </div><!-- /.box-body -->
@@ -140,6 +140,14 @@
 				}
 				return out;
 			}
+			$.fn.initDateBox = function($option){
+				console.log("init datebox fired");
+				var that = $(this),
+					arr = $(this).val().split(" "),
+					out = arr[2]+"-"+addTrailingZero(months.indexOf(arr[1])+1)+"-"+arr[0];
+				that.attr("dValue",out);
+				return that;
+			};
 			$.fn.dateVal = function($option){
 				$settings = $.extend({
 					srcFormat:"dd MM yyyy",
@@ -147,7 +155,7 @@
 				});
 				var that = $(this),
 					arr = $(this).val().split(" "),
-					out = arr[2]+"-"+addTrailingZero(months.indexOf(arr[1]))+"-"+arr[0];
+					out = arr[2]+"-"+addTrailingZero(months.indexOf(arr[1])+1)+"-"+arr[0];
 					that.attr("dValue",out);
 			}
 			$("#bday").datepicker({
@@ -155,15 +163,22 @@
 				autoclose:true
 			})
 			.on("changeDate",function(){
-				console.log("date changed");
 				$(this).dateVal();
-				console.log("dValue",$(this).attr("dValue"));
-			});
+			})
+			.on("show",function(){
+				console.log("Datepicker fired");
+			}).initDateBox();
 			$("#saveStudent").click(function(){
 				console.log("test2");
 				$.ajax({
 					url:"http://madrasahv2/students/update",
-					data:{id:$("#studentId").val(),fname:$("#fname").val(),bday:$("#bday").val(),bplace:$("#bplace").val(),image:$("#picture").attr("src")},
+					data:{
+						id:$("#studentId").val(),
+						fname:$("#fname").val(),
+						bday:$("#bday").attr("dValue"),
+						bplace:$("#bplace").val(),
+						image:$("#picture").attr("src")
+					},
 					type:"post"
 				})
 				.done(function(res){

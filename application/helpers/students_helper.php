@@ -7,7 +7,7 @@
 	}
 	function getstudent($id){
 		$ci = & get_instance();
-		$query = "select id,fname,lname,address,city,bplace,date_format(bday,'%d-%b-%Y')birthday,image from students ";
+		$query = "select id,fname,lname,address,city,bplace,date_format(bday,'%d %M %Y')birthday,image from students ";
 		$query.= "where id=".$id;
 		$result = $ci->db->query($query);
 		return $result->result()[0];

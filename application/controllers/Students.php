@@ -30,11 +30,13 @@ class Students extends CI_Controller{
 		$params = $this->input->post();
 		$query = "insert into students (fname,bday,bplace,image) values ('".$params["fname"]."','".$params["bday"]."','".$params["bplace"]."','".$params["image"]."')";
 		$this->db->query($query);
+		echo $this->db->insert_id();
 	}
 	public function update(){
 		$params = $this->input->post();
 		$query = "update students set fname='".$params["fname"]."',bday='".$params["bday"]."',bplace='".$params["bplace"]."',image='".$params["image"]."' where id='".$params["id"]."'";
 		$this->db->query($query);
+		echo $query;
 	}
 	public function view(){
 	$this->load->view("students");

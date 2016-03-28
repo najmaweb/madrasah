@@ -3,6 +3,7 @@
 	<?php $this->load->view("commons/head");?>
 	<link rel="stylesheet" href="<?php echo baseurl();?>assets/padi/plugins/datepicker/datepicker3.css" />
 	<script type="text/javascript" src="<?php echo baseurl();?>assets/padilibs/padi.imagelib.js"></script>	
+	<script src="<?php echo baseurl()?>assets/niceedit/nicEdit.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		uploadImage = function(evt){
 		  var input = evt.target;
@@ -16,6 +17,14 @@
 		  }
 		  fileReader.readAsDataURL(input.files[0]);
 		}
+		bkLib.onDomLoaded(function() {
+			nicEditors.allTextAreas({
+				uploadURI : '<?php echo baseurl();?>nicUpload/do_upload', 
+				buttonList : ['bold','italic','underline','upload'], 
+				iconsPath:'<?php echo baseurl(); ?>assets/niceedit/nicEditorIcons.gif'
+			});
+		}); 
+
 	</script>	
   <body class="skin-blue">
     <div class="wrapper">
@@ -79,11 +88,11 @@
                     </div>
                     <div class="form-group">
                       <label>No Induk</label>
-                      <input type="text" class="form-control" placeholder="Enter ..." id="nrp"/>
+                      <input type="text" class="form-control" placeholder="Enter ..." id="nrp" value="<?php echo $obj->nrp;?>"/>
                     </div>
                     <div class="form-group">
                       <label>No Induk Siswa Nasional</label>
-                      <input type="text" class="form-control" placeholder="Enter ..." id="nisn"/>
+                      <input type="text" class="form-control" placeholder="Enter ..." id="nisn" value="<?php echo $obj->nisn;?>"/>
                     </div>
                     <div class="form-group">
                       <label>Tempat Lahir</label>
@@ -101,7 +110,7 @@
                     <!-- textarea -->
                     <div class="form-group">
                       <label>Keterangan</label>
-                      <textarea class="form-control" rows="3" placeholder="Enter ..." id="description"></textarea>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..." id="description"><?php echo $obj->description?></textarea>
                     </div>
                   <div class="box-footer">
                     <div  id="saveStudent" class="btn btn-primary">Simpan</div>
@@ -169,7 +178,7 @@
 				console.log("Datepicker fired");
 			}).initDateBox();
 			$("#saveStudent").click(function(){
-				console.log("test2");
+				console.log("save student");
 				$.ajax({
 					url:"http://madrasahv2/students/update",
 					data:{
@@ -177,12 +186,17 @@
 						fname:$("#fname").val(),
 						bday:$("#bday").attr("dValue"),
 						bplace:$("#bplace").val(),
-						image:$("#picture").attr("src")
+						nrp:$("#nrp").val(),
+						nisn:$("#nisn").val(),
+						image:$("#picture").attr("src"),
+						description:$("div.nicEdit-main").html()
 					},
 					type:"post"
 				})
 				.done(function(res){
+					console.log("content",niece.getContent());
 					console.log("res",res);
+					window.location.href = "http://madrasahv2/students";
 				})
 				.fail(function(err){
 					console.log("Err",err);

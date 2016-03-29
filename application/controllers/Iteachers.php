@@ -1,29 +1,18 @@
 <?php
-class Teachers extends CI_Controller{
+class Iteachers extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->helper("teachers");
 	}
-	public function add(){
-		if(islogin()){
-			$this->load->view("teachers/registration");
-		}
-	}
 	public function index(){
 		if(islogin()){
-			$data["objs"] = getteachers();
-			$this->load->view("teachers/teachers",$data);
+			$data["objs"] = getteachers('0');
+			$this->load->view("iteachers/teachers",$data);
 		}
 	}
 	public function profile(){
 		$data["obj"] = getteacher($this->uri->segment(3));
-		$this->load->view("teachers/profile",$data);
-	}
-	public function save(){
-		$params = $this->input->post();
-		$query = "insert into teachers (fname,lname,bday,bplace,nrp,image,address,description) values ('".$params["fname"]."','".$params["lname"]."','".$params["bday"]."','".$params["bplace"]."','".$params["nrp"]."','".$params["image"]."','".$params["address"]."','".$params["description"]."')";
-		$this->db->query($query);
-		echo $this->db->insert_id();
+		$this->load->view("iteachers/profile",$data);
 	}
 	public function update(){
 		$params = $this->input->post();

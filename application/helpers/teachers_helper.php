@@ -1,7 +1,8 @@
 <?php
-	function getteachers(){
+	function getteachers($active = '1'){
 		$ci = & get_instance();
-		$query = "select id,concat(fname,' ',lname)name,address,city,bplace,nrp,date_format(bday,'%d-%b-%Y')birthday from teachers";
+		$query = "select id,concat(fname,' ',lname)name,address,city,bplace,nrp,date_format(bday,'%d-%b-%Y')birthday from teachers ";
+		$query.= "where active='".$active."'";
 		$result = $ci->db->query($query);
 		return $result->result();
 	}

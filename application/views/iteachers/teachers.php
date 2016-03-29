@@ -11,7 +11,7 @@
         <section class="content-header">
           <h1>
             Daftar Guru
-            <small>Aktif</small>
+            <small>Non Aktif</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -26,8 +26,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-					<a href="<?php echo base_url();?>iteachers/"><i title="Lihat Guru yang nonaktif" class="fa fa-trash-o pointer"></i></a>
-					<a href="<?php echo base_url();?>teachers/add"><i title="Penambahan Guru" class="fa fa-plus-circle pointer"></i></a>
+					<a href="<?php echo base_url();?>teachers"><i title="Lihat Guru yang aktif" class="fa fa-reply pointer"></i></a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example1" class="table table-bordered table-striped">

@@ -194,7 +194,6 @@
 					type:"post"
 				})
 				.done(function(res){
-					console.log("content",niece.getContent());
 					console.log("res",res);
 					window.location.href = "http://madrasahv2/students";
 				})

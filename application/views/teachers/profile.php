@@ -145,7 +145,7 @@
     <script src="<?php echo base_url()?>assets/padi/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
     <script type="text/javascript">
 		(function($){
-			var months = ["January","February","March","April","May","June","July","August","September","October","Nopember","December"];
+			var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 			addTrailingZero = function(pnumber){
 				var out;
 				for(var i=pnumber.toString().length;i<=2;i++){

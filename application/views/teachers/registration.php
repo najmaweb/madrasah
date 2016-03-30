@@ -36,8 +36,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Profile Guru
-            <small>Preview</small>
+            Penambahan
+            <small>Guru</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -76,7 +76,7 @@
               <!-- general form elements disabled -->
               <div class="box box-warning">
                 <div class="box-header">
-                  <h3 class="box-title">Data Siswa</h3>
+                  <h3 class="box-title">Data Guru</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <form role="form">
@@ -144,7 +144,7 @@
     <script src="<?php echo base_url()?>assets/padi/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
     <script type="text/javascript">
 		(function($){
-			var months = ["January","February","March","April","May","June","July","August","September","October","Nopember","December"];
+			var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 			addTrailingZero = function(pnumber){
 				var out;
 				for(var i=pnumber.toString().length;i<=2;i++){

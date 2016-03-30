@@ -23,7 +23,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Konfirmasi Penghapusan</h4>
+        <h4 class="modal-title" id="confirmtitle">Konfirmasi Penghapusan</h4>
       </div>
       <div class="modal-body">
         <p id="confirmtext">Apakah anda benar-benar akan menghapus  ?.</p>

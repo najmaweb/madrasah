@@ -59,7 +59,7 @@
 							  <ul class="dropdown-menu" role="menu">
 								<li><a href="<?php echo baseurl();?>teachers/profile/<?php echo $obj->id;?>">Profile</a></li>
 								<li class="divider"></li>
-								<li class="remove"><a>Masukkan ke <i class="fa fa-trash-o pointer"></i></a></li>
+								<li class="remove pointer"><a>Masukkan ke <i class="fa fa-trash-o pointer"></i></a></li>
 							  </ul>
 							</div>
 						</td>
@@ -114,6 +114,7 @@
 				$("#tTeacher tr").removeClass("selected");
 				tr.addClass("selected");
 				$("#confirmtext").html("Apakah anda benar-benar hendak menghapus "+tname+" ?");
+				$("#confirmtitle").html("Konfirmasi Hapus Data");
 				$("#removeconfirm").modal();
 			});
 			$("#yesremove").click(function(){

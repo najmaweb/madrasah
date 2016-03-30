@@ -25,6 +25,12 @@ class Teachers extends CI_Controller{
 		$this->db->query($query);
 		echo $this->db->insert_id();
 	}
+	public function setactive(){
+		$params = $this->input->post();
+		$query = "update teachers set active='".$params["active"]."' where id='".$params["id"]."'";
+		$this->db->query($query);
+		echo $query;		
+	}
 	public function update(){
 		$params = $this->input->post();
 		$query = "update teachers set fname='".$params["fname"]."',lname='".$params["lname"]."',bday='".$params["bday"]."',bplace='".$params["bplace"]."',nrp='".$params["nrp"]."',address='".$params["address"]."',image='".$params["image"]."',description='".$params["description"]."' where id='".$params["id"]."'";

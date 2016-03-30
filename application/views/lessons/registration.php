@@ -19,9 +19,9 @@
 		}
 		bkLib.onDomLoaded(function() {
 			nicEditors.allTextAreas({
-				uploadURI : '<?php echo baseurl();?>nicUpload/do_upload', 
+				uploadURI : '<?php echo base_url();?>nicUpload/do_upload', 
 				buttonList : ['bold','italic','underline','upload'], 
-				iconsPath:'<?php echo baseurl(); ?>assets/niceedit/nicEditorIcons.gif'
+				iconsPath:'<?php echo base_url(); ?>assets/niceedit/nicEditorIcons.gif'
 			});
 		}); 
 
@@ -36,8 +36,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Profile Guru
-            <small>Preview</small>
+            Penambahan
+            <small>Guru</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -48,19 +48,18 @@
 
         <!-- Main content -->
         <section class="content">
-			<input id="teacherId" type="hidden" value="<?php echo $obj->id;?>" />
           <div class="row">
             <!-- left column -->
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title"><?php echo $obj->fname?></h3>
+                  <h3 class="box-title">Penambahan Guru</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                   <div class="box-body">
                     <div class="form-group">
-						<img id="picture" src="<?php echo $obj->image;?>" width="300px" height="400px">
+						<img id="picture"  width="300px" height="400px">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile" id="pilih_gambar">File input</label>
@@ -77,34 +76,25 @@
               <!-- general form elements disabled -->
               <div class="box box-warning">
                 <div class="box-header">
-                  <h3 class="box-title">Data Siswa</h3>
+                  <h3 class="box-title">Data Guru</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <form role="form">
                     <!-- text input -->
                     <div class="form-group">
                       <label>Nama depan</label>
-                      <input type="text" class="form-control" placeholder="Nama Depan ..." id="fname" value="<?php echo $obj->fname;?>"/>
+                      <input type="text" class="form-control" placeholder="Nama ..." id="name" />
                     </div>
                     <div class="form-group">
-                      <label>Nama belakang</label>
-                      <input type="text" class="form-control" placeholder="Nama Belakang ..." id="lname" value="<?php echo $obj->lname;?>"/>
-                    </div>
-                    <div class="form-group">
-                      <label>No Induk</label>
-                      <input type="text" class="form-control" placeholder="No Induk ..." id="nrp" value="<?php echo $obj->nrp;?>"/>
-                    </div>
-                    <div class="form-group">
-                      <label>Tempat Lahir</label>
-                      <input type="text" class="form-control" placeholder="Tempat Lahir ..."  id="bplace" value="<?php echo $obj->bplace;?>"/>
-                    </div>
-                    <div class="form-group">
-                      <label>Tanggal Lahir</label>
-                      <input type="text" class="form-control" placeholder="Tanggal Lahir ..."  id="bday" value="<?php echo $obj->birthday;?>"/>
-                    </div>
-                    <div class="form-group">
-                      <label>Alamat</label>
-                      <input type="text" class="form-control" placeholder="Alamat ..."  id="address" value="<?php echo $obj->address;?>"/>
+                      <label>Kelas</label>
+                      <select class="form-control" id="grade_id" >
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+						  <option value="6">6</option>
+					  </select>
                     </div>
                     <div class="form-group">
                       <label>No In</label>
@@ -114,10 +104,10 @@
                     <!-- textarea -->
                     <div class="form-group">
                       <label>Keterangan</label>
-                      <textarea class="form-control" rows="3" placeholder="Enter ..." id="description"><?php echo $obj->description?></textarea>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..." id="description"></textarea>
                     </div>
                   <div class="box-footer">
-                    <div  id="saveTeacher" class="btn btn-primary">Simpan</div>
+                    <div  id="saveLesson" class="btn btn-primary">Simpan</div>
                   </div>
                   </form>
                 </div><!-- /.box-body -->
@@ -171,36 +161,21 @@
 					out = arr[2]+"-"+addTrailingZero(months.indexOf(arr[1])+1)+"-"+arr[0];
 					that.attr("dValue",out);
 			}
-			$("#bday").datepicker({
-				format:"dd MM yyyy",
-				autoclose:true
-			})
-			.on("changeDate",function(){
-				$(this).dateVal();
-			})
-			.on("show",function(){
-				console.log("Datepicker fired");
-			}).initDateBox();
-			$("#saveTeacher").click(function(){
-				console.log("save teacher");
+			$("#saveLesson").click(function(){
+				console.log("save lesson");
 				$.ajax({
-					url:"http://madrasahv2/teachers/update",
+					url:"http://madrasahv2/lessons/save",
 					data:{
-						id:$("#teacherId").val(),
-						fname:$("#fname").val(),
-						lname:$("#lname").val(),
-						bday:$("#bday").attr("dValue"),
-						bplace:$("#bplace").val(),
-						nrp:$("#nrp").val(),
-						address:$("#address").val(),
-						image:$("#picture").attr("src"),
+						id:$("#lessonId").val(),
+						name:$("#name").val(),
+						grade_id:$("#grade_id").val(),
 						description:$("div.nicEdit-main").html()
 					},
 					type:"post"
 				})
 				.done(function(res){
 					console.log("res",res);
-					window.location.href = "http://madrasahv2/teachers";
+					window.location.href = "http://madrasahv2/lessons";
 				})
 				.fail(function(err){
 					console.log("Err",err);

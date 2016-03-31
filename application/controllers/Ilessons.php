@@ -1,5 +1,5 @@
 <?php
-class Lessons extends CI_Controller{
+class Ilessons extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->helper("lessons");
@@ -7,19 +7,19 @@ class Lessons extends CI_Controller{
 	}
 	public function add(){
 		if(islogin()){
-			$this->load->view("lessons/registration");
+			$this->load->view("ilessons/registration");
 		}
 	}
 	public function index(){
 		if(islogin()){
-			$data["objs"] = getlessons();
-			$this->load->view("lessons/lessons",$data);
+			$data["objs"] = getlessons("0");
+			$this->load->view("ilessons/lessons",$data);
 		}
 	}
 	public function profile(){
 		$data["obj"] = getlesson($this->uri->segment(3));
 		$data["grades"] = getgradearray();
-		$this->load->view("lessons/profile",$data);
+		$this->load->view("ilessons/profile",$data);
 	}
 	public function save(){
 		$params = $this->input->post();
@@ -40,6 +40,6 @@ class Lessons extends CI_Controller{
 		echo $query;
 	}
 	public function view(){
-		$this->load->view("lessons");
+		$this->load->view("ilessons");
 	}
 }

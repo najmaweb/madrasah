@@ -37,11 +37,11 @@
         <section class="content-header">
           <h1>
             Penambahan
-            <small>Pelajaran</small>
+            <small>Guru</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Pelajaran</a></li>
+            <li><a href="#">Guru</a></li>
             <li class="active">Profile</li>
           </ol>
         </section>
@@ -54,7 +54,7 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Penambahan Pelajaran</h3>
+                  <h3 class="box-title">Penambahan Guru</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                   <div class="box-body">
@@ -76,7 +76,7 @@
               <!-- general form elements disabled -->
               <div class="box box-warning">
                 <div class="box-header">
-                  <h3 class="box-title">Data Pelajaran</h3>
+                  <h3 class="box-title">Data Guru</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <form role="form">
@@ -136,7 +136,31 @@
     <script type="text/javascript">
 		(function($){
 			var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
+			addTrailingZero = function(pnumber){
+				var out;
+				for(var i=pnumber.toString().length;i<=2;i++){
+					out = '0'+pnumber.toString();
+				}
+				return out;
+			}
+			$.fn.initDateBox = function($option){
+				console.log("init datebox fired");
+				var that = $(this),
+					arr = $(this).val().split(" "),
+					out = arr[2]+"-"+addTrailingZero(months.indexOf(arr[1])+1)+"-"+arr[0];
+				that.attr("dValue",out);
+				return that;
+			};
+			$.fn.dateVal = function($option){
+				$settings = $.extend({
+					srcFormat:"dd MM yyyy",
+					outFormat:"yyyy-mm-dd"
+				});
+				var that = $(this),
+					arr = $(this).val().split(" "),
+					out = arr[2]+"-"+addTrailingZero(months.indexOf(arr[1])+1)+"-"+arr[0];
+					that.attr("dValue",out);
+			}
 			$("#saveLesson").click(function(){
 				console.log("save lesson");
 				$.ajax({

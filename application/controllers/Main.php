@@ -72,4 +72,7 @@ class Main extends CI_Controller{
 			echo "error";
 		}		
 	}
+	function pagenotfound(){
+		echo "Maaf halaman tidak diketemukan, <a href=".base_url()."main/login>Klik disini untuk login</a>";
+	}
 }

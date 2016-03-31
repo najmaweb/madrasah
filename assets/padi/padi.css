@@ -1,0 +1,25 @@
+@media(min-width:800px){
+	.ppicture{
+		width:450px;
+	}
+}
+@media(max-width:321px){
+	.ppicture{
+		width:250px;
+	}
+}
+@media(max-width:769px){
+	.ppicture{
+		width:450px;
+	}
+}
+@media(max-width:801px){
+	.ppicture{
+		width:500px;
+	}
+}
+@media(max-width:981px){
+	.ppicture{
+		width:700px;
+	}
+}

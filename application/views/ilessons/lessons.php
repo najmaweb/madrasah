@@ -30,8 +30,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-					<a href="<?php echo base_url();?>ilessons/"><i title="Lihat Pelajaran yang nonaktif" class="fa fa-trash-o pointer"></i></a>
-					<a href="<?php echo base_url();?>lessons/add"><i title="Penambahan Pelajaran" class="fa fa-plus-circle pointer"></i></a>
+					<a href="<?php echo base_url();?>lessons/"><i title="Lihat Pelajaran yang aktif" class="fa fa-reply pointer"></i></a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="tLesson" class="table table-bordered table-striped">
@@ -57,9 +56,9 @@
 								<span class="sr-only">Toggle Dropdown</span>
 							  </button>
 							  <ul class="dropdown-menu" role="menu">
-								<li><a href="<?php echo baseurl();?>lessons/profile/<?php echo $obj->id;?>">Profile</a></li>
+								<li><a href="<?php echo baseurl();?>lessons/profile/<?php echo $obj->id;?>">Edit</a></li>
 								<li class="divider"></li>
-								<li class="remove pointer"><a>Masukkan ke <i class="fa fa-trash-o pointer"></i></a></li>
+								<li class="remove pointer"><a>Jadikan Aktif</a></li>
 							  </ul>
 							</div>
 						</td>
@@ -70,7 +69,7 @@
                       <tr>
                         <th>Nama</th>
                         <th>Kelas</th>
-                        <th>TTL</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
                     </tfoot>
@@ -112,7 +111,7 @@
 					tname = tr.find(".tname").html();
 				$("#tLesson tr").removeClass("selected");
 				tr.addClass("selected");
-				$("#confirmtext").html("Apakah anda benar-benar hendak menghapus "+tname+" ?");
+				$("#confirmtext").html("Apakah anda mengaktifkan "+tname+" ?");
 				$("#confirmtitle").html("Konfirmasi Hapus Data");
 				$("#removeconfirm").modal();
 			});
@@ -121,7 +120,7 @@
 					trid = $("#tLesson tbody tr.selected").attr("trid");
 				$.ajax({
 					url:"http://madrasahv2/lessons/setactive",
-					data:{id:trid,active:"0"},
+					data:{id:trid,active:"1"},
 					type:"post"
 				})
 				.done(function(res){
